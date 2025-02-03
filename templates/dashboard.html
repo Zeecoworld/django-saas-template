@@ -1,0 +1,25 @@
+{% block content %}
+
+<div class="subscription-plans">
+    {% for plan in plans %}
+    <div class="plan">
+        <h3>{{ plan.name }}</h3>
+        <p>${{ plan.price }}/month</p>
+        <ul>
+            {% for feature in plan.features %}
+            <li>{{ feature }}</li>
+            {% endfor %}
+        </ul>
+        <button class="subscribe-button" data-plan-id="{{ plan.id }}">
+            Subscribe
+        </button>
+    </div>
+    {% endfor %}
+</div>
+
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+    const stripe = Stripe('{{ STRIPE_PUBLIC_KEY }}');
+    // Add your subscription handling JavaScript here
+</script>
+{% endblock %}

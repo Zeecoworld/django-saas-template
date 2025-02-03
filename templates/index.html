@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - MyApp{% endblock %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto">
+    {% if user.is_authenticated %}
+        <!-- Content for authenticated users -->
+        <div class="bg-white shadow-md rounded-lg p-6">
+            <h1 class="text-2xl font-bold text-gray-800 mb-4">Welcome</h1>
+            <div class="space-y-4">
+                <div class="bg-blue-50 p-4 rounded-md">
+                    <h2 class="text-lg font-semibold text-blue-800">Your Account</h2>
+                    <p class="text-gray-600">Email: {{ user.email }}</p>
+                    <p class="text-gray-600">Member since: {{ user.date_joined|date:"F j, Y" }}</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="bg-green-50 p-4 rounded-md">
+                        <h3 class="text-lg font-semibold text-green-800">Quick Actions</h3>
+                        <ul class="mt-2 space-y-2">
+                            <li><a href="#" class="text-green-600 hover:text-green-800">View Profile</a></li>
+                            <li><a href="#" class="text-green-600 hover:text-green-800">Account Settings</a></li>
+                            <li><a href="#" class="text-green-600 hover:text-green-800">My Projects</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-purple-50 p-4 rounded-md">
+                        <h3 class="text-lg font-semibold text-purple-800">Recent Activity</h3>
+                        <p class="text-gray-600 mt-2">No recent activity to display.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <!-- Content for non-authenticated users -->
+        <div class="text-center">
+            <h1 class="text-4xl font-bold text-gray-800 mb-6">Welcome to MyApp</h1>
+            <p class="text-xl text-gray-600 mb-8">The perfect solution for your needs.</p>
+            
+            <div class="space-y-8">
+                <div class="bg-white shadow-md rounded-lg p-6">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">Why Choose Us?</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="text-center">
+                            <div class="text-blue-500 text-4xl mb-2">⚡</div>
+                            <h3 class="text-lg font-semibold mb-2">Fast & Easy</h3>
+                            <p class="text-gray-600">Get started in minutes</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-green-500 text-4xl mb-2">🛡️</div>
+                            <h3 class="text-lg font-semibold mb-2">Secure</h3>
+                            <p class="text-gray-600">Your data is safe with us</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-purple-500 text-4xl mb-2">💪</div>
+                            <h3 class="text-lg font-semibold mb-2">Powerful</h3>
+                            <p class="text-gray-600">All the features you need</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flex justify-center space-x-4">
+                    <a href="{% url 'signup' %}" class="bg-blue-500 hover:bg-blue-600 text-white px-8 py-3 rounded-md text-lg font-semibold">Get Started</a>
+                    <a href="{% url 'login' %}" class="bg-gray-500 hover:bg-gray-600 text-white px-8 py-3 rounded-md text-lg font-semibold">Login</a>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

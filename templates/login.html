@@ -1,0 +1,19 @@
+{% block content %}
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+    <form method="POST" action="">
+        {% csrf_token %}
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="password" name="password" placeholder="Enter Password" required>
+        <textarea name="bio" placeholder="Bio"></textarea>
+        <button type="submit">Create User</button>
+    </form>
+
+
+{% endblock %}
